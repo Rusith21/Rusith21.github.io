@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rusith Wijesinghe | IT Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Modern CSS Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* CSS Variables for consistent theming */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --text-light: #9ca3af;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    /* Base Styles */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      scroll-behavior: smooth;
+    }
+
+    /* Modern Header with Hero Section */
+    .hero {
+      background: var(--gradient-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+      background-size: cover;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .hero-text .description {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    /* Profile Photo Container */
+    .profile-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-image {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: 6px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-lg);
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar.visible {
+      transform: translateY(0);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Main Content Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Project Cover Image */
+    .project-cover {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-cover img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .project-tech {
+      color: var(--primary-color);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      color: var(--primary-color);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: var(--secondary-color);
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: var(--bg-card);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-title a {
+      color: var(--text-primary);
+      transition: color 0.3s ease;
+    }
+
+    .blog-title a:hover {
+      color: var(--primary-color);
+    }
+
+    .blog-date {
+      color: var(--text-light);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .blog-excerpt {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Education Section */
+    .education-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .education-item {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .education-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .education-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .education-logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .education-logo i {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+
+    .education-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .education-institution {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .education-period {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .education-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Certifications Section */
+    .certifications-section {
+      margin-top: 3rem;
+    }
+
+    .certifications-title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .certifications {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cert-item {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .cert-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cert-item i {
+      color: var(--primary-color);
+      margin-right: 0.5rem;
+    }
+
+    .cert-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .cert-provider {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--text-primary);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--accent-color);
+    }
+
+    .resume-section {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .resume-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .resume-download:hover {
+      background: var(--secondary-color);
+    }
+
+    .resume-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: white;
+      padding: 1rem 2rem;
+      border: 2px solid white;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .resume-view:hover {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    /* Image Loading Animation */
+    .project-cover img, .profile-image, .education-logo img {
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .profile-image {
+        width: 250px;
+        height: 250px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .projects-grid,
+      .skills-grid,
+      .blog-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .resume-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <div class="nav-logo">Rusith Wijesinghe</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Rusith Wijesinghe</h1>
+        <p class="subtitle">Final-year IT Undergraduate | Full‑Stack & AI/ML Developer</p>
+        <p class="description">Passionate about building innovative solutions that bridge technology and real-world problems. Experienced in full-stack development, machine learning, and creating user-centric applications.</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-code"></i>
+            View My Work
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <i class="fas fa-envelope"></i>
+            Get In Touch
+          </a>
+        </div>
+      </div>
+      <div class="profile-photo">
+        <img src="images/profile/profile-photo.jpg" alt="Rusith Wijesinghe - IT Professional" class="profile-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">I'm a final‑year BSc(Hons) IT student at SLIIT with hands‑on experience building AI‑powered and full‑stack web applications. Skilled in Python, JavaScript, Java, and frameworks like React, Node.js, Flask, and Spring Boot. I thrive on solving real‑world problems in agile teams and am currently seeking internship opportunities to apply my skills and learn from industry experts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">A comprehensive toolkit for modern software development</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3><i class="fas fa-code"></i> Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><i class="fas fa-paint-brush"></i> Frontend Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Bootstrap</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><i class="fas fa-server"></i> Backend Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">Spring Boot</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><i class="fas fa-database"></i> Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">SQL Server</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><i class="fas fa-brain"></i> ML Frameworks</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">TensorFlow/Keras</span>
+            <span class="skill-tag">XGBoost</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><i class="fas fa-tools"></i> Development Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Git/GitHub</span>
+            <span class="skill-tag">REST API</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">XAMPP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">A showcase of my technical expertise and problem-solving abilities</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-cover">
+            <img src="images/projects/wow-jobs-cover.jpg" alt="Wow Jobs Job Portal - MERN Stack Application Screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Wow Jobs Job Portal</h3>
+            <p class="project-tech">MERN Stack (MongoDB, Express.js, React, Node.js)</p>
+            <p class="project-description">Wow Jobs is a modern portal that streamlines job search and hiring. I implemented secure authentication with JWT, role-based access control, dynamic listings with real-time filters, and application tracking dashboards.</p>
+            <div class="project-links">
+              <a href="https://github.com/Rusith21/Online-Job-portal-MERN" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-cover">
+            <img src="images/projects/number-identifier-cover.jpg" alt="Number & Shape Identifier - AI/ML Application Screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Number & Shape Identifier</h3>
+            <p class="project-tech">Python, Flask, TensorFlow/Keras</p>
+            <p class="project-description">Built a Flask web app using a CNN to classify handwritten digits and shapes. Implemented secure uploads, preprocessing, and a clean frontend UI.</p>
+            <div class="project-links">
+              <a href="https://github.com/Rusith21/number-identify-app" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-cover">
+            <img src="images/projects/insurance-prediction-cover.jpg" alt="Health Insurance Cost Prediction - Machine Learning Application Screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Health Insurance Cost Prediction</h3>
+            <p class="project-tech">Python, Streamlit, XGBoost</p>
+            <p class="project-description">Created a Streamlit app to predict insurance premiums, engineered features, compared models, and optimized performance with XGBoost.</p>
+            <div class="project-links">
+              <a href="https://github.com/Rusith21/Health-Insurance-Cost-Prediction" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-cover">
+            <img src="images/projects/fitness-app-cover.jpg" alt="Fitness Social Media App - Spring Boot Application Screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Fitness Social Media App</h3>
+            <p class="project-tech">Spring Boot, REST API, React.js, Google OAuth2</p>
+            <p class="project-description">Developed a Spring Boot backend with RESTful endpoints for user posts and comments, integrated Google OAuth2 authentication, and built a React.js frontend for dynamic feeds.</p>
+            <div class="project-links">
+              <a href="https://github.com/Rusith21/Fitness-Social-media-app-Spring-Boot-JAVA" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-cover">
+            <img src="images/projects/flixfinder-cover.jpg" alt="FlixFinder - iOS Movie Recommendation App Screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">FlixFinder</h3>
+            <p class="project-tech">SwiftUI, MVVM, URLSession, Codable, UserDefaults</p>
+            <p class="project-description">FlixFinder recommends movies based on user mood, fetching titles via the TMDB API. Features include mood-driven recommendations, local watchlist with offline support, and MVVM architecture.</p>
+            <div class="project-links">
+              <a href="https://github.com/Rusith21/FlixFinder" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="section" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Latest Blog Posts</h2>
+        <p class="section-subtitle">Sharing insights and learnings from my development journey</p>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <h3 class="blog-title"><a href="#">Building an OCR Pipeline with OpenCV</a></h3>
+          <p class="blog-date"><i class="fas fa-calendar"></i> June 15, 2025</p>
+          <p class="blog-excerpt">Step-by-step guide on setting up an OCR pipeline using OpenCV and Tesseract for text extraction in images.</p>
+        </article>
+        <article class="blog-card">
+          <h3 class="blog-title"><a href="#">Deploying Machine Learning Models on AWS</a></h3>
+          <p class="blog-date"><i class="fas fa-calendar"></i> May 30, 2025</p>
+          <p class="blog-excerpt">Learn how to containerize and deploy ML models using Docker, AWS ECS, and Lambda functions for scalable inference.</p>
+        </article>
+        <article class="blog-card">
+          <h3 class="blog-title"><a href="#">Introduction to React Context API</a></h3>
+          <p class="blog-date"><i class="fas fa-calendar"></i> April 10, 2025</p>
+          <p class="blog-excerpt">An overview of managing global state in React applications with Context API and hooks for cleaner code.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Education & Certifications</h2>
+        <p class="section-subtitle">Building a strong foundation in technology and continuous learning</p>
+      </div>
+      <div class="education-content">
+        <div class="education-grid">
+          <!-- SLIIT Education -->
+          <div class="education-item">
+            <div class="education-logo">
+              <!-- Replace with actual SLIIT logo -->
+              <img src="images/logos/sliit-logo.png" alt="SLIIT Logo">
+              <!-- Fallback icon if image not available -->
+              <!-- <i class="fas fa-university"></i> -->
+            </div>
+            <h3 class="education-title">BSc(Hons) in Information Technology</h3>
+            <p class="education-institution">Sri Lanka Institute of Information Technology</p>
+            <p class="education-period">2022 – 2025</p>
+            <p class="education-description">Comprehensive program covering software engineering, database systems, web development, and emerging technologies including AI/ML.</p>
+          </div>
+
+          <!-- School Education -->
+          <div class="education-item">
+            <div class="education-logo">
+              <!-- Replace with actual school logo -->
+              <img src="images/logos/school-logo.png" alt="St Aloysius College Logo">
+              <!-- Fallback icon if image not available -->
+              <!-- <i class="fas fa-graduation-cap"></i> -->
+            </div>
+            <h3 class="education-title">Advanced Level</h3>
+            <p class="education-institution">St Aloysius College, Galle</p>
+            <p class="education-period">2006 – 2021</p>
+            <p class="education-description">Completed Advanced Level studies with focus Information & Communication Technology.</p>
+          </div>
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="certifications-section">
+          <h3 class="certifications-title">Professional Certifications</h3>
+          <div class="certifications">
+            <div class="cert-item">
+              <i class="fas fa-certificate"></i>
+              <strong>Complete 2024 Web Development Bootcamp</strong>
+              <span class="cert-provider">Udemy</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-certificate"></i>
+              <strong>DevOps Fundamentals 2024</strong>
+              <span class="cert-provider">Udemy</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-certificate"></i>
+              <strong>MongoDB for Developers 2024</strong>
+              <span class="cert-provider">MongoDB University</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer/Contact Section -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <h2 class="footer-title">Let's Connect</h2>
+      <div class="contact-links">
+        <a href="mailto:rusithwijesinghe7@gmail.com" class="contact-link">
+          <i class="fas fa-envelope"></i>
+          rusithwijesinghe7@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/rusithwijesinghe" target="_blank" class="contact-link">
+          <i class="fab fa-linkedin"></i>
+          LinkedIn
+        </a>
+        <a href="https://github.com/Rusith21" target="_blank" class="contact-link">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+        <span class="contact-link">
+          <i class="fas fa-phone"></i>
+          +94 75 9571894
+        </span>
+      </div>
+      
+      <!-- Enhanced Resume Section -->
+      <div class="resume-section">
+        <a href="documents/Rusith_Wijesinghe_Resume.pdf" download class="resume-download">
+          <i class="fas fa-download"></i>
+          Download Resume (PDF)
+        </a>
+        <a href="documents/Rusith_Wijesinghe_Resume.pdf" target="_blank" class="resume-view">
+          <i class="fas fa-eye"></i>
+          View Resume
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Show navbar on scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('visible');
+      } else {
+        navbar.classList.remove('visible');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Image loading error handling
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        // Show fallback icon if image fails to load
+        const parent = this.parentElement;
+        if (parent.classList.contains('education-logo')) {
+          this.style.display = 'none';
+          const fallbackIcon = parent.querySelector('i');
+          if (fallbackIcon) {
+            fallbackIcon.style.display = 'block';
+          }
+        }
+      });
+    });
+
+    // Add scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
